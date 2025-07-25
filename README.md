@@ -1,4 +1,4 @@
-# 🔔 Notification Service – Very Detailed Low-Level Design (LLD)
+# 🔔 Notification Service – Low-Level Design (LLD)
 
 ---
 
