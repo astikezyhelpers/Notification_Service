@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+
+
+model NotificationPreference {
+  id         String     @id @default(uuid())
+  userId     String
+  channel    Channel
+  eventType  EventType
+  isEnabled  Boolean
+  updatedAt  DateTime   @updatedAt
+
+  @@unique([userId, channel, eventType])
+}
+
+model NotificationLog {
+  id             String   @id @default(uuid())
+  userId         String
+  channel        Channel
+  status         Status
+  messageId      String?
+  retryCount     Int      @default(0)
+  payloadPreview String?
+  createdAt      DateTime @default(now())
+}
+
+enum Channel {
+  email
+  sms
+  push
+}
+
+enum EventType {
+  booking
+  wallet
+  expense
+  rewards
+}
+
+enum Status {
+  sent
+  failed
+  retrying
+}
+
