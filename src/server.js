@@ -53,7 +53,7 @@ const startServer = async () => {
     // Start all notification consumers
     await startAllConsumers();
     
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 3008;
     app.listen(PORT, () => {
       console.log(` Notification Service running on port ${PORT}`);
       console.log(`Health check: http://localhost:${PORT}/health`);
